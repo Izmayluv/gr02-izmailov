@@ -1,33 +1,41 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-#define n  5
+int main()
+{
+#define days 31
+float coeff[days];
 
-int main() {
+#define coeff_lo 10.0f
+#define coeff_hi 50.0f
 
-    int a[n];
-    int m;
+for(int i = 0; i < days; i++)
+{
+	coeff[i] = coeff_lo + (coeff_hi - coeff_lo) * rand() / RAND_MAX;
+}
 
-    printf("num: ");
-    scanf("%d", &m);
+for(int i = 0; i < days; i++)
+{
+	printf("% 6.2f", coeff[i]);
+	if(i % 7 == 6) printf("\n");
+}
 
-    for (int i = 0; i < m; i++) {
-        printf("a%d: ", i);
-        scanf("%d", &a[i]);
-    }
+if(days % 7 > 0) printf("\n");
 
-    printf("a[] = ");
-    for (int i = 0; i < m; i++) {
-        printf("%d", a[i]);
-        if (i < m - 1) putchar(' ');
-    }
-    putchar('\n');
+float cmin = coeff_hi;
+float cmax = coeff_lo;
 
-    int s = 0;
+for(int i = 0; i < days; i++)
+{
+	if(coeff[i] < cmin) cmin = coeff[i];
+	if(coeff[i] > cmax) cmax = coeff[i];
+}
 
-    for (int i = 0; i < m; i++) {
-        s += a[i];
-    }
-    printf("sum: %d\n", s);
+printf("\n");
 
-    return 0;
+printf("min = %.2f\n", cmin);
+printf("max = %.2f\n", cmax);
+
+
+return 0 ;
 }
