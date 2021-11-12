@@ -14,7 +14,7 @@ struct element
 
     struct element *prev;
     struct element *next;
-}
+};
 
 struct element *first = NULL;
 struct element *last = NULL;
